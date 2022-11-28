@@ -4,6 +4,30 @@ function HomePage() {
   const emailInputRef = useRef();
   const feedbackInputRef = useRef();
 
+  const submitFormHandler = (event) => {
+    event.preventDefault();
+    
+    const enteredEmail = emailInputRef.current.value;
+    const enteredFeedback = feedbackInputRef.current.value;
+
+    // optional: Could validate here
+
+    const reqBody = {
+      email: enteredEmail,
+      text: enteredFeedback
+    };
+
+    fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+  };
+
   return (
     <div>
       <h1>The Home Page</h1>
