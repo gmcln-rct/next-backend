@@ -11,15 +11,15 @@ function HomePage() {
         <h2>Form</h2>
         <div>
         <label htmlFor="email">Your Email Address</label>
-        <input type="email" id="email" />
+        <input type="email" id="email" ref={emailInputRef} />
         </div>
         <div>
         <label htmlFor="name">Your Name</label>
         <input type="text" id="name" />
         </div>
         <div>
-        <label htmlFor="message">Message</label>
-        <textarea id="message" rows="5"></textarea>
+        <label htmlFor="feedback">feedback</label>
+        <textarea id="feedback" rows="5" ref={feedbackInputRef}></textarea>
         </div>
         <button>Send Message</button>
         </form>
