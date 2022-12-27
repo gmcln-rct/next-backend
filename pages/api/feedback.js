@@ -1,5 +1,9 @@
+import fs from 'fs';
+import path from 'path';
+
 function handler(req, res) {
     if (req.method === 'POST') {
+        // Next parses body for us
         const email = req.body.email;
         const feedbackText = req.body.text;
 
