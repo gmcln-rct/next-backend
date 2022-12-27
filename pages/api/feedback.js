@@ -21,9 +21,10 @@ function handler(req, res) {
         fs.writeFileSync(filePath, JSON.stringify(data));
         // console.log(newFeedback);
         res.status(201).json({ message: 'Success!', feedback: newFeedback });
-    }
+    } else {
     // Code inside here will not be exposed to visitors
-    res.status(200).json({ message: 'This req works!' });
+        res.status(200).json({ message: 'This req works!' });
+    }
 }
 
 export default handler;
