@@ -1,22 +1,28 @@
-import { useRouter } from 'next/router';
+import { buildFeedbackPath, extractFeedback } from "../api/feedback";
 
-function FeedbackPage() {
-  const router = useRouter();
+function FeedbackPage(props) {
 
-  function loadFeedbackHandler(id) {
-    router.push('/feedback/' + id);
-  }
 
   return (
-    <div>
-      <FeedbackList onFeedbackClick={loadFeedbackHandler} />
-    </div>
+    <ul>
+      {props.feedbackItems.map(item => (
+        <li key={item.id}>{item.text}</li>
+        ))}
+    </ul>
   );
 }
 
 export async function getStaticProps() {
-  // fetch data from an API
-  const filePath = path.join(process.cwd(), 'data', 'feedback.json');
-  const jsonData
+// Code inside here will not be exposed to visitors
+const filePath = buildFeedbackPath();
+const data = extractFeedback(filePath);
+return {
+    props: {
+        feedbackItems: data
+        
+    },
+    revalidate: 1
+};
+}
 
 export default FeedbackPage;
