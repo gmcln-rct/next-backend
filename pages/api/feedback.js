@@ -26,7 +26,6 @@ function handler(req, res) {
 
         // Store that in a database or in a file
         const filePath = buildFeedbackPath();
-        // const fileData = fs.readFileSync(filePath);
         const data = extractFeedback(filePath);
         data.push(newFeedback);
         fs.writeFileSync(filePath, JSON.stringify(data));
@@ -36,7 +35,7 @@ function handler(req, res) {
     // Code inside here will not be exposed to visitors
         const filePath = buildFeedbackPath();
         const data = extractFeedback(filePath);
-        res.status(200).json({ message: 'This req works!' });
+        res.status(200).json({ feedback: data });
     }
 }
 
