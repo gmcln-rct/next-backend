@@ -24,7 +24,7 @@ function HomePage() {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
+    .then(response => response.json())
     .then(data => console.log(data));
   };
 
@@ -37,15 +37,15 @@ function HomePage() {
         <label htmlFor="email">Your Email Address</label>
         <input type="email" id="email" ref={emailInputRef} />
         </div>
-        <div>
+        {/* <div>
         <label htmlFor="name">Your Name</label>
         <input type="text" id="name" />
-        </div>
+        </div> */}
         <div>
         <label htmlFor="feedback">feedback</label>
         <textarea id="feedback" rows="5" ref={feedbackInputRef}></textarea>
         </div>
-        <button>Send Message</button>
+        <button onClick={submitFormHandler}>Send Feedback</button>
         </form>
     </div>
   );

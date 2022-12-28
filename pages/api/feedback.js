@@ -19,7 +19,7 @@ function handler(req, res) {
         const data = JSON.parse(fileData);
         data.push(newFeedback);
         fs.writeFileSync(filePath, JSON.stringify(data));
-        // console.log(newFeedback);
+        console.log(newFeedback);
         res.status(201).json({ message: 'Success!', feedback: newFeedback });
     } else {
     // Code inside here will not be exposed to visitors
