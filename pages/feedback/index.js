@@ -14,15 +14,16 @@ function FeedbackPage(props) {
 
 export async function getStaticProps() {
 // Code inside here will not be exposed to visitors
-const filePath = buildFeedbackPath();
-const data = extractFeedback(filePath);
-return {
-    props: {
-        feedbackItems: data
-        
-    },
-    revalidate: 1
-};
+// Should not use http request on internal api
+    const filePath = buildFeedbackPath();
+    const data = extractFeedback(filePath);
+    return {
+        props: {
+            feedbackItems: data
+            
+        },
+        revalidate: 1
+    };
 }
 
 export default FeedbackPage;
