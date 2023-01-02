@@ -2,11 +2,19 @@ import { buildFeedbackPath, extractFeedback } from "../api/feedback";
 
 function FeedbackPage(props) {
 
+  function loadFeedbackHandler(id) {
+    fetch(`/api/${id}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    });
+  }
+
 
   return (
     <ul>
       {props.feedbackItems.map(item => (
-        <li key={item.id}>{item.text}</li>
+        <li key={item.id}><button onClick={loadFeedbackHandler.bind()}>Show Details</button></li>
         ))}
     </ul>
   );
