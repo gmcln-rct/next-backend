@@ -1,7 +1,8 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 
-import { getEventById, getFeaturedEvents } from '../../helpers/api-util';
+// import { getEventById, getFeaturedEvents } from '../../helpers/api-util';
+import { getEventById, getFeaturedEvents } from '../../dummy-data';
 import EventSummary from '../../components/event-detail/event-summary';
 import EventLogistics from '../../components/event-detail/event-logistics';
 import EventContent from '../../components/event-detail/event-content';

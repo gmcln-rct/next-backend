@@ -14,6 +14,7 @@ function EventItem(props) {
     month: 'long',
     year: 'numeric',
   });
+  console.log("Location", location);
   const formattedAddress = location.replace(', ', '\n');
   const exploreLink = `/events/${id}`;
 
