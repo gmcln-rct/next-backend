@@ -28,10 +28,15 @@ function handler(req, res) {
 
     console.log(newComment);
 
-    res.status(201).json({ message: 'Added comment', comment: newComment });
+    res.status(201).json({ message: 'Added your silly comment', comment: newComment });
   }
 
     if (req.method === 'GET') {
+        const dummyList = [
+            { id: 'c1', name: 'Max', text: 'A 1st comment!' },
+            { id: 'c2', name: 'Big Lebowski', text: 'A second comment!' },
+        ];
+        
     // const eventId = req.query.eventId;
         
     // const client = await MongoClient.connect(MONGODB_URI);
@@ -40,7 +45,7 @@ function handler(req, res) {
     // const selectedComments = await commentsCollection.find({ eventId
     // }).toArray();
     // client.close();
-    // res.status(200).json({ comments: selectedComments });
+    res.status(200).json({ comments: dummyList });
 }
 }
 
