@@ -3,13 +3,13 @@ function handler(req, res) {
     const userEmail = req.body.email;
 
     if (!userEmail || !userEmail.includes('@')) {
-      res.status(422).json({ message: 'Invalid email address.' });
+      res.status(422).json({ message: 'Invalid email address. Try harder' });
       return;
     }
 
     console.log(userEmail);
 
-    res.status(201).json({ message: 'Signed up!' });
+    res.status(201).json({ message: 'You are signed up!' });
   }
 }
 
