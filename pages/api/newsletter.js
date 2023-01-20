@@ -11,15 +11,13 @@ async function handler(req, res) {
 
     const client = await MongoClient.connect(
       'mongodb+srv://newsletteruser:S6iHou7gpgVhOS2k@cluster2.q5n56ip.mongodb.net/?retryWrites=true&w=majority'
-    )
-      const db = client.db();
+    );
 
-      const newsletterCollection = db.collection('newsletter');
+    const db = client.db();
 
-      return newsletterCollection.insertOne({ email: userEmail });
-    ;
+      // const newsletterCollection = db.collection('newsletter');
 
-    console.log(userEmail);
+    await db.collection('emails').insertOne({ email: userEmail });
 
     res.status(201).json({ message: 'You are signed up!' });
   }
