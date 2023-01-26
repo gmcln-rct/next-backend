@@ -18,7 +18,7 @@ function AllEventsPage(props) {
   }
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>All my events</title>
       </Head>
@@ -31,7 +31,7 @@ function AllEventsPage(props) {
       </Head>
       <EventsSearch onSearch={findEventsHandler} />
       <EventList items={events} />
-    </Fragment>
+    </>
   );
 }
 
