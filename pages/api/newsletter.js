@@ -15,9 +15,11 @@ async function handler(req, res) {
 
     const db = client.db();
 
-      // const newsletterCollection = db.collection('newsletter');
-
     await db.collection('emails').insertOne({ email: userEmail });
+
+    client.close();
+
+    console.log("userEmail: ", userEmail)
 
     res.status(201).json({ message: 'You are signed up!' });
   }
