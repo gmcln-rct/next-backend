@@ -2,12 +2,14 @@ import { MongoClient } from 'mongodb';
 
 async function handler(req, res) {
 
-    const { eventId } = req.query.eventId;
+    const { eventId } = req.query;
+
+    console.log("eventId: ", eventId);
 
     const client = await MongoClient.connect(
       'mongodb+srv://newsletteruser:S6iHou7gpgVhOS2k@cluster2.q5n56ip.mongodb.net/?retryWrites=true&w=majority'
     );
-    
+
     if (req.method === 'POST') {
       // add server-side validation
       const { email, name, text } = req.body;
@@ -32,9 +34,11 @@ async function handler(req, res) {
         eventId
       };
 
+      const db = client.db();
+
       const result = await db.collection('comments').insertOne(newComment);
 
-      console.log(result);
+      console.log("Result " + result);
 
       res.status(201).json({ message: 'Added your silly comment', comment: newComment });
     }
@@ -47,12 +51,12 @@ async function handler(req, res) {
           
       const eventId = req.query.eventId;
           
-      const client = await MongoClient.connect(MONGODB_URI);
-      const db = client.db();
-      const commentsCollection = db.collection('comments');
-      const selectedComments = await commentsCollection.find({ eventId
-      }).toArray();
-      client.close();
+      // const client = await MongoClient.connect(MONGODB_URI);
+      // const db = client.db();
+      // const commentsCollection = db.collection('comments');
+      // const selectedComments = await commentsCollection.find({ eventId
+      // }).toArray();
+      // client.close();
       res.status(200).json({ comments: dummyList });
   }
 
