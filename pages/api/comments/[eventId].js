@@ -44,19 +44,9 @@ async function handler(req, res) {
     }
 
       if (req.method === 'GET') {
-          const dummyList = [
-              { id: 'c1', name: 'Max', text: 'A 1st comment!' },
-              { id: 'c2', name: 'Big Lebowski', text: 'A second comment!' },
-          ];
-          
-      const eventId = req.query.eventId;
-          
-      // const client = await MongoClient.connect(MONGODB_URI);
-      // const db = client.db();
-      // const commentsCollection = db.collection('comments');
-      // const selectedComments = await commentsCollection.find({ eventId
-      // }).toArray();
-      // client.close();
+        const db = client.db();
+        
+
       res.status(200).json({ comments: dummyList });
   }
 
