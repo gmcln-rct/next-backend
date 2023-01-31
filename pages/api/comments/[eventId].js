@@ -1,14 +1,18 @@
 import { MongoClient } from 'mongodb';
 
+import { connectDatabase, insertDocument } from '../../helpers/db-util';
+
 async function handler(req, res) {
 
-    const { eventId } = req.query;
+    const { eventId } = req.query.eventId;
 
-    console.log("eventId: ", eventId);
+    let client;
 
-    const client = await MongoClient.connect(
-      'mongodb+srv://newsletteruser:S6iHou7gpgVhOS2k@cluster2.q5n56ip.mongodb.net/?retryWrites=true&w=majority'
-    );
+    try {
+       client = await connectDatabase();
+    } catch (error) {
+      res.status(500).json({ message: 'Connecting to db epic failed.' });
+    }
 
     if (req.method === 'POST') {
       // add server-side validation
