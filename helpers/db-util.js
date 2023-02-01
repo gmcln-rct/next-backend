@@ -15,3 +15,16 @@ export async function connectDatabase () {
   
     return result;
   }
+
+export async function getAllDocuments(client, collection, sort) {
+    const db = client.db();
+
+    const documents = await db
+      .collection(collection)
+      .find()
+      .sort(sort)
+      .toArray();
+
+      return documents;
+}
+    

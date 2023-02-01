@@ -11,7 +11,8 @@ async function handler(req, res) {
     try {
        client = await connectDatabase();
     } catch (error) {
-      res.status(500).json({ message: 'Connecting to db epic failed.' });
+      res.status(500).json({ message: 'ARGH: Connecting to db epic failed.' });
+      return
     }
 
     if (req.method === 'POST') {
@@ -38,11 +39,16 @@ async function handler(req, res) {
         eventId
       };
 
-      const db = client.db();
+      let result;
 
-      const result = await db.collection('comments').insertOne(newComment);
+      try {
+        result = await insertDocument(client, 'comments', newComment);
+      } catch (error) {
+        res.status(500).json({ message: 'ARGH: Inserting COMMENT failed.' });
+        return;
+      }
 
-      console.log("Result " + result);
+      newComment._id = result.insertedId;
 
       res.status(201).json({ message: 'Added your silly comment', comment: newComment });
     }
