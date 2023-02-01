@@ -15,7 +15,7 @@ async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      // add server-side validation
+
       const { email, name, text } = req.body;
 
       if (
