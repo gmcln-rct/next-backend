@@ -43,7 +43,7 @@ async function handler(req, res) {
       try {
         result = await insertDocument(client, 'comments', newComment);
         newComment._id = result.insertedId;
-          res.status(201).json({ message: 'Added your silly comment', comment: newComment });
+        res.status(201).json({ message: 'Added your silly comment', comment: newComment });
       } catch (error) {
         res.status(500).json({ message: 'ARGH: Inserting COMMENT failed.' });
       }
