@@ -1,8 +1,23 @@
 import {createContext} from 'react';
 
-createContext({
+// Uppercase because it's a component
+
+const NotificationContext = createContext({
     notification: null,
-    showNotificaiton: function (notificationData) {},
-})
+    showNotification: function () {},
+    hideNotification: function () {}
+});
+
+export function NotificationContextProvider(props) {
+    const {children} = props;
+
+
+
+    return (
+        <NotificationContext.Provider>
+            {children}
+        </NotificationContext.Provider>
+    );
+}
 
 export default NotificationContext;
