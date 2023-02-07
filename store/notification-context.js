@@ -1,4 +1,4 @@
-import {createContext} from 'react';
+import {createContext, useState} from 'react';
 
 // Uppercase because it's a component
 
@@ -9,13 +9,12 @@ const NotificationContext = createContext({
 });
 
 export function NotificationContextProvider(props) {
-    const {children} = props;
 
-
+    const [activeNotification, setActiveNotification] = useState();
 
     return (
         <NotificationContext.Provider>
-            {children}
+            {props.children}
         </NotificationContext.Provider>
     );
 }
