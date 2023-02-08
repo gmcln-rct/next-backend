@@ -16,7 +16,8 @@ function Layout(props) {
     <Fragment>
       <MainHeader />
       <main>{props.children}</main>
-      <Notification />
+      {activeNotification && (
+      <Notification title={activeNotification.title} message={activeNotification.message } status={activeNotification.status} />)}
     </Fragment>
   );
 }
