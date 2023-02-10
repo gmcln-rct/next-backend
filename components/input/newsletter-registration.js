@@ -24,8 +24,21 @@ function NewsletterRegistration() {
         'Content-Type': 'application/json'
       }
     }).then((response) => response.json())
-      .then((data) => console.log(data));
-
+      .then((data) => {
+          NotificationContext.showNotification({
+            title: 'Success!',
+            message: 'Successfully registered for Newsletter.',
+            status: 'success'
+          });
+        })
+        .catch((error) => {
+          notificationCtx.showNotification({
+            title: 'Error!',
+            message: data.message || 'Something went wrong!',
+            status: 'error'
+          });
+        });
+        
   }
 
   return (
