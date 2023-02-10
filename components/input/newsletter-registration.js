@@ -23,7 +23,15 @@ function NewsletterRegistration() {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then((response) => response.json())
+    }).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return response.json().then((data) => {
+        console.log(data);
+        throw new Error(data.message || 'Something went wrong!');
+      });
+    })
       .then((data) => {
           NotificationContext.showNotification({
             title: 'Success!',
