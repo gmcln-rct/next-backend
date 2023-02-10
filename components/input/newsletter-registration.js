@@ -1,12 +1,21 @@
 import classes from './newsletter-registration.module.css';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import NotificationContext from '../../store/notification-context';
 
 function NewsletterRegistration() {
   const emailInputRef = useRef();
+  const notificationCtx = useContext(NotificationContext);
+
   function registrationHandler(event) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
+
+    NotificationContext.showNotification({
+      title: 'Signing up...',
+      message: 'Registering for newsletter.',
+      status: 'pending'
+    });
 
     fetch('/api/newsletter', {
       method: 'POST',

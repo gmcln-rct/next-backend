@@ -10,7 +10,7 @@ function Layout(props) {
 
   const notificationCtx = useContext(NotificationContext);
 
- const activeNotification = notificationCtx.notification 
+ const activeNotification = notificationCtx.notification;
 
   return (
     <Fragment>
