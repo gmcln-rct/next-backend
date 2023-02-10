@@ -34,7 +34,7 @@ function NewsletterRegistration() {
         .catch((error) => {
           notificationCtx.showNotification({
             title: 'Error!',
-            message: data.message || 'Something went wrong!',
+            message: error.message || 'Something went wrong!',
             status: 'error'
           });
         });
