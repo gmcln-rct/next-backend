@@ -11,7 +11,7 @@ function NewsletterRegistration() {
 
     const enteredEmail = emailInputRef.current.value;
 
-    NotificationContext.showNotification({
+    notificationCtx.showNotification({
       title: 'Signing up...',
       message: 'Registering for newsletter.',
       status: 'pending'
@@ -25,9 +25,10 @@ function NewsletterRegistration() {
       }
     }).then((response) => {
       if (response.ok) {
+        console.log("in if")
         return response.json();
       }
-
+      console.log("in first then")
       // 400 and 500 errors will not be caught by the above if statement
       return response.json().then((data) => {
         console.log(data);
@@ -35,13 +36,15 @@ function NewsletterRegistration() {
       });
     })
       .then((data) => {
-          NotificationContext.showNotification({
+        console.log("in second then")
+        notificationCtx.showNotification({
             title: 'Success!',
             message: 'Successfully registered for Newsletter.',
             status: 'success'
           });
         })
         .catch((error) => {
+          console.log("in catch")
           notificationCtx.showNotification({
             title: 'Error!',
             message: error.message || 'Something went wrong!',
