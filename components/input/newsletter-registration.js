@@ -27,6 +27,8 @@ function NewsletterRegistration() {
       if (response.ok) {
         return response.json();
       }
+
+      // 400 and 500 errors will not be caught by the above if statement
       return response.json().then((data) => {
         console.log(data);
         throw new Error(data.message || 'Something went wrong!');
