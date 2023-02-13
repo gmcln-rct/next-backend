@@ -35,7 +35,11 @@ function Comments(props) {
   }
 
   function addCommentHandler(commentData) {
-    // send data to API
+    notificationCtx.showNotification({
+      title: 'Signing up...',
+      message: 'Registering for newsletter.',
+      status: 'pending'
+    });
 
     fetch(`/api/comments/${eventId}`, {
       method: 'POST',
