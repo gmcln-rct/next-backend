@@ -36,8 +36,8 @@ function Comments(props) {
 
   function addCommentHandler(commentData) {
     notificationCtx.showNotification({
-      title: 'Signing up...',
-      message: 'Registering for newsletter.',
+      title: 'Sending comment...',
+      message: 'Your comment is currently being stored.',
       status: 'pending'
     });
 
@@ -49,11 +49,28 @@ function Comments(props) {
       },
     }).then((response) => {
       if (response.ok) {
-        console.log('Success!');
+        console.log("in if")
+        return response.json();
       }
+      console.log("in first then")
+      // 400 and 500 errors will not be caught by the above if statement
+      return response.json().then((data) => {
+        console.log(data);
+        throw new Error(data.message || 'Something went wrong with comments!');
+      });
     }).then((data) => {
-      console.log(data);
-    });
+      notificationCtx.showNotification({
+        title: 'Comment success!!!!.',
+        message: 'Your comment was saved',
+        status: 'success'
+      });
+    }).catch((error) => {
+      notificationCtx.showNotification({
+        title: 'Error!',
+        message: error.message || 'Catch: something went wrong with comments!',
+        status: 'error'
+      });
+    }
 
   }
 
