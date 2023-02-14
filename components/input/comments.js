@@ -70,7 +70,7 @@ function Comments(props) {
         message: error.message || 'Catch: something went wrong with comments!',
         status: 'error'
       });
-    }
+    })
 
   }
 
